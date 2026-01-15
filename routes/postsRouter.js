@@ -3,6 +3,7 @@ const router = express.Router();
 const postController = require("../controller/postsController.js");
 
 router.get("/AllPosts", postController.getAllposts);
-router.get("/:id", postController.getPost);
-router.get("/", postController.getPostByUploadId);
+router.get("posts/:id", postController.getPost);
+router.get("posts/upload", postController.getPostByUploadId);
+router.post("posts/create", postController.createPost);
 module.exports = router;
