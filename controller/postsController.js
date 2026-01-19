@@ -24,6 +24,18 @@ const getPost = async (req, res) => {
       .json({ message: "Error fetching post", error: error.message });
   }
 };
-
-module.exports = { getAllposts };
-module.exports = { getAllposts, getPost };
+const getPostByUploadId = async (req, res) => {
+  try {
+    const { uploadId } = req.query;
+    const posts = await postModel.find({ upload: uploadId });
+    if (!posts) {
+      return res.status(400).json({ message: "Post not found" });
+    }
+    res.status(200).json(posts);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching posts", error: error.message });
+  }
+};
+module.exports = { getAllposts, getPost, getPostByUploadId };
