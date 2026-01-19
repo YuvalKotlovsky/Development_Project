@@ -51,4 +51,46 @@ const createPost = async (req, res) => {
       .json({ message: "Error creating Post", error: error.message });
   }
 };
-module.exports = { getAllposts, getPost, getPostByUploadId, createPost };
+
+const updatePost = async (req, res) => {
+   try {
+ const postId = req.params.id;
+    const { title, content } = req.body;
+
+    const updatedPost = await postModel.findByIdAndUpdate(
+      postId,
+      { title, content },
+      { new: true }
+    );
+
+    res.status(200).json({
+      message: "Post details updated",
+      data: updatedPost,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to update post",
+      error: error.message,
+    });
+  }
+};
+
+const deletePost = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    await commentModel.deleteMany({ postId: id });
+    await postModel.findByIdAndDelete(id);
+
+    res.status(200).json({
+      message: "Post and related comments removed",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to delete post",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { getAllposts, getPost, getPostByUploadId, createPost, updatePost, deletePost };
