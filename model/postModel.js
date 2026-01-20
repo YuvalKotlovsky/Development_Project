@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema({
   comments: [commentSchema],
   upload: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
     required: true,
   },
 });
