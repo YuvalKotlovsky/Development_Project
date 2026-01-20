@@ -1,5 +1,5 @@
 @host = http://localhost
-@port = 8082
+@port = 8081
 @baseUrl = {{host}}:{{port}}
 
 ############################# USERS FLOW ####################
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {
   "name": "Dor Test",
-  "email": "dortest1@gmail.com",
+  "email": "dortest@gmail.com",
   "password": "11112222"
 }
 
@@ -22,7 +22,7 @@ GET {{baseUrl}}/users/All
 
 ###
 # 3) Get a single user by id
-@userId = 696e5dfdf3b55fc9fd40b277
+@userId = 696e556ef3b55fc9fd40b261
 GET {{baseUrl}}/users/{{userId}}
 
 ###
@@ -33,8 +33,7 @@ Content-Type: application/json
 
 {
   "id": "{{userId}}",
-  "name": "Or Updated",
-  "email": "or.updated@gmail.com",
+  "name": "Updated",
   "password": "123456"
 }
 
@@ -56,13 +55,13 @@ GET {{baseUrl}}/posts/AllPosts
 
 ###
 # 2) Get a single post by id
-@postId = 
+@postId = 696f81c86e7a8e1a2ab01625
 GET {{baseUrl}}/posts/{{postId}}
 
 ###
 # 3) Get posts by uploader id
 # Returns all posts created by a specific user.
-@uploaderId = 696e5dfdf3b55fc9fd40b277
+@uploaderId = 696e556ef3b55fc9fd40b261
 GET {{baseUrl}}/posts/upload?uploadId={{userId}}
 
 
@@ -80,11 +79,6 @@ Content-Type: application/json
   "upload": "{{userId}}",
   "comments": []
 }
-###
-GET {{baseUrl}}/posts/test
-
-###
-GET {{baseUrl}}/ping
 
 ###
 # 5) Update a post by id
@@ -109,8 +103,8 @@ Content-Type: application/json
 ############################# COMMENTS FLOW ####################
 ###
 # 1) Get all comments for a specific post
-@postIdForComments = 696b9a4c221fb92220188188
-GET {{baseUrl}}/comments/{{postIdForComments}}
+@postIdForComments = 696f84836e7a8e1a2ab01649
+GET {{baseUrl}}/comments/AllComments-post/{{postIdForComments}}
 
 ###
 # 2) Create a new comment
@@ -120,13 +114,13 @@ Content-Type: application/json
 
 {
   "userId": "696b95a0cd7e9100129c4e4b",
-  "postId": "696b9a4c221fb92220188188",
+  "postId": "{{postIdForComments}}",
   "text": "Comment text for API test"
 }
 
 ###
 # 3) Update a comment by id
-@commentId = 696b9b06a6488a86636c1684
+@commentId = 696f84a56e7a8e1a2ab0164d
 PUT {{baseUrl}}/comments/update
 Content-Type: application/json
 

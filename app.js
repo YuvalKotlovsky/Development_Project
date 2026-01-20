@@ -1,3 +1,6 @@
+//Yuval Kotlovsky - 212199996
+// Dor Tamir - 211679451
+
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
@@ -30,7 +33,7 @@ app.use("/users", userRouter);
 app.use("/posts", postsRouter);
 app.use("/comments", commentRouter);
 
-
+//
 app.get("/ping", (req, res) => res.send("pong"));
 
 app.listen(port, () => {
