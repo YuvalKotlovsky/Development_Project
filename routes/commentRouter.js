@@ -7,4 +7,7 @@ router.get("/AllComments-post/:postId", commentController.getAllCommentsPostId);
 router.post("/create", commentController.createComment);
 
 router.put("/update", commentController.updateComment);
+
+router.delete('/delete', commentController.deleteComment);
+
 module.exports = router;
